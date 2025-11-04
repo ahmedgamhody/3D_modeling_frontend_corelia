@@ -1,16 +1,50 @@
-// import { useGetModel } from "@/hooks/useGetModel";
+import { VideoControls } from "@/components/video/CameraController";
+import { Instructions } from "@/components/video/Instructions";
+import { Scene3D } from "@/components/video/Scene3D";
+import { useVideoPlayer } from "@/hooks/useVideoPlayer";
+import videoFile from "@/assets/R0010639_202508131717_YN20102774.MP4";
 
 export default function ShowModelPage() {
-  //   const { model, modelLoading, error, refetch } = useGetModel();
-
-  //   if (modelLoading) return <p>Loading model data...</p>;
-  //   if (error) return <p style={{ color: "red" }}>{error}</p>;
+  const {
+    isPlaying,
+    isMuted,
+    currentTime,
+    duration,
+    zoomLevel,
+    togglePlay,
+    toggleMute,
+    handleSeek,
+    resetView,
+    handleVideoElementReady,
+    handleZoomIn,
+    handleZoomOut,
+  } = useVideoPlayer();
+  const videoUrl = videoFile;
 
   return (
     <div>
-      <h1>Model Details Page</h1>
+      <div className="w-full h-screen bg-black relative">
+        <Scene3D
+          videoUrl={videoUrl}
+          onVideoElementReady={handleVideoElementReady}
+          zoomLevel={zoomLevel}
+        />
 
-      {/* <button onClick={refetch}>Reload</button> */}
+        <VideoControls
+          isPlaying={isPlaying}
+          isMuted={isMuted}
+          currentTime={currentTime}
+          duration={duration}
+          onTogglePlay={togglePlay}
+          onToggleMute={toggleMute}
+          onSeek={handleSeek}
+          onResetView={resetView}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+        />
+
+        <Instructions />
+      </div>
     </div>
   );
 }

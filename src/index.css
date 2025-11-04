@@ -118,3 +118,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom cursor styles for 3D viewer */
+.viewer-container {
+  cursor: grab;
+  user-select: none;
+}
+
+.viewer-container:active {
+  cursor: grabbing;
+}
