@@ -50,7 +50,7 @@ export default function AddProjectDialog() {
           </div> */}
           <FileUpload
             onFileSelect={(files) => console.log("Selected files:", files)}
-            disabled={true}
+            // disabled={true}
           />
           <DialogFooter>
             <DialogClose asChild>
